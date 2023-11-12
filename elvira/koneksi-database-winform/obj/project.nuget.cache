@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "gaSBq2y7nNCHyWgB4vHrldWIJd5UlgtjIUnTx6kGpJGYsraspvjbPuS2h24eKP5a/hmOySgugPId04fBwGneBA==",
+  "success": true,
+  "projectFilePath": "D:\\New folder\\koneksi-database-winform-master\\koneksi-database-winform\\koneksi-database-winform.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
