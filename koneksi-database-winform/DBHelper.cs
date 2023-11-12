@@ -48,12 +48,59 @@ namespace koneksi_database_winform
             return tableList.ToArray();
         }
 
-        //public object[] GetRows(string tableName, int idx)
-        //{
-        //    string query = "SELECT * FROM " + tableName + " WHERE id = " + idx;
+        public void updateRows(string nama, int semester, string id, string prodi)
+        { 
+
+            connection.Open();
+
+            //string query = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'";
 
 
-        //}
+            try
+            {
+                connection.Open();
+                string query = @"UPDATE mata_kuliah SET Nama = @Nama, Semester = @Semester, id = @ID, Prodi = @Prodi";
+
+                using NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
+
+                cmd.Parameters.AddWithValue("@Nama", nama);
+                cmd.Parameters.AddWithValue("@Semester", semester);
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.Parameters.AddWithValue("@Prodi", prodi);
+                
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                Console.WriteLine(rowsAffected);
+
+                //query = string.Format(query, nama, semester, id, prodi);
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            
+
+
+
+            connection.Close();
+            
+        }
+
+            public DataRow GetRowByIndex(DataTable table, int rowIdx)
+        {
+            if (table != null && table.Rows.Count > 0)
+            {
+                if (rowIdx >= 0 && rowIdx < table.Rows.Count)
+                {
+                    return table.Rows[rowIdx];
+                }
+            }
+            return null;
+        }
 
         public DataTable GetTables(string tableName)
         {
@@ -69,6 +116,8 @@ namespace koneksi_database_winform
                 using NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(cmd);
 
                 dataAdapter.Fill(dataTable);
+
+                
             }
 
             catch (Exception ex)

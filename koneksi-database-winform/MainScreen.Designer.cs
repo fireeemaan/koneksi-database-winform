@@ -33,50 +33,53 @@
             addData = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-
-            DBHelper dbHelper = new DBHelper();
             // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 43);
+            dataGridView1.Location = new Point(0, 26);
+            dataGridView1.Margin = new Padding(2, 2, 2, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(1076, 425);
+            dataGridView1.Size = new Size(753, 255);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // cbxTable
             // 
             cbxTable.FormattingEnabled = true;
-            cbxTable.Items.AddRange(dbHelper.GetTableNames());
-            cbxTable.Location = new Point(12, 4);
+            cbxTable.Items.AddRange(new object[] { "konversi", "tim_prestasi", "mata_kuliah", "prestasi", "mahasiswa_prestasi", "mahasiswa" });
+            cbxTable.Location = new Point(8, 2);
+            cbxTable.Margin = new Padding(2, 2, 2, 2);
             cbxTable.Name = "cbxTable";
-            cbxTable.Size = new Size(182, 33);
+            cbxTable.Size = new Size(129, 23);
             cbxTable.TabIndex = 1;
             cbxTable.SelectedIndexChanged += cbxTable_SelectedIndexChanged;
             // 
             // addData
             // 
-            addData.Location = new Point(438, 474);
+            addData.Location = new Point(307, 284);
+            addData.Margin = new Padding(2, 2, 2, 2);
             addData.Name = "addData";
-            addData.Size = new Size(194, 47);
+            addData.Size = new Size(136, 28);
             addData.TabIndex = 2;
             addData.Text = "Tambah Data";
             addData.UseVisualStyleBackColor = true;
             addData.Click += addData_Click;
             // 
-            // Form1
+            // MainScreen
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1076, 533);
+            ClientSize = new Size(753, 320);
             Controls.Add(addData);
             Controls.Add(cbxTable);
             Controls.Add(dataGridView1);
-            Name = "Form1";
+            Margin = new Padding(2, 2, 2, 2);
+            Name = "MainScreen";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

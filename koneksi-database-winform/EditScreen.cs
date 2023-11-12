@@ -16,20 +16,27 @@ namespace koneksi_database_winform
         public EditScreen()
         {
             InitializeComponent();
-            editTimPrestasi.Hide();
-            editMatakuliah.Hide();
+
         }
-        public EditScreen(string tableName, int index)
+        public EditScreen(string tableName, DataRow dataRow, int index)
         {
             InitializeComponent();
             editTimPrestasi.Hide();
             editMatakuliah.Hide();
 
 
+
+
             if (tableName == "mata_kuliah")
             {
+
                 editMatakuliah.Show();
-                //tbxIDMK = 
+                tbxIDMK.Text = (string)dataRow["ID"];
+                tbxNamaMK.Text = (string)dataRow["Nama"];
+                tbxSemesterMK.Text = dataRow["Semester"].ToString();
+                cbxProdi.Text = (string)dataRow["Prodi"];
+
+
             }
             else if (tableName == "tim_prestasi")
             {
@@ -37,11 +44,27 @@ namespace koneksi_database_winform
             }
             else
             {
-                MessageBox.Show("Fitur Belum Tersedia!");
-                this.Close();
+
             }
 
 
+
+        }
+
+        private void btnSimpanMK_Click(object sender, EventArgs e)
+        {
+            var IDMK = tbxIDMK.Text;
+            var NamaMK = tbxNamaMK.Text;
+            int SemesterMK = Int32.Parse(tbxSemesterMK.Text);
+            var Prodi = cbxProdi.Text;
+
+            dbHelper.updateRows(NamaMK, SemesterMK, IDMK, Prodi);
+
+            DialogResult message = MessageBox.Show("Data Berhasil Diubah", "Sukses", MessageBoxButtons.OK);
+            if (message == DialogResult.OK)
+            {
+                this.Close();
+            }
         }
     }
 }

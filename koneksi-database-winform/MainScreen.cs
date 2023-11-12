@@ -1,3 +1,4 @@
+using System.Data;
 using System.Runtime.InteropServices;
 
 namespace koneksi_database_winform
@@ -37,7 +38,7 @@ namespace koneksi_database_winform
         {
             addData.Show();
             dataGridView1.Show();
-            
+
 
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = dBHelper.GetTables(cbxTable.Text);
@@ -51,9 +52,24 @@ namespace koneksi_database_winform
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.ColumnIndex == dataGridView1.Columns["editButton"].Index && e.RowIndex >= 0)
             {
-                
+                var tableName = cbxTable.Text;
+                var table = dBHelper.GetTables(cbxTable.Text);
+                DataRow selectedRow = dBHelper.GetRowByIndex(table, e.RowIndex);
+
+                using (EditScreen formEdit = new EditScreen(tableName, selectedRow, e.RowIndex))
+                {
+                    
+                    formEdit.ShowDialog();
+                }
+
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = dBHelper.GetTables(cbxTable.Text);
+                //EditScreen editScreen = new EditScreen(tableName, selectedRow, e.RowIndex);
+                //editScreen.ShowDialog();
+
             }
         }
     }
