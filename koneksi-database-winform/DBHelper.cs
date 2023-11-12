@@ -19,7 +19,7 @@ namespace koneksi_database_winform
 
         public DBHelper()
         {
-            var connString = "Host=localhost;Port=5432;Database=PBO_Project_TEST;Username=postgres;Password=tahutahu1";
+            var connString = "Host=localhost;Port=5432;Database=PBO_Project_TEST;Username=postgres;Password=";
             connection = new NpgsqlConnection(connString);
         }
 
