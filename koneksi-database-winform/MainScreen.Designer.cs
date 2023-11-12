@@ -40,8 +40,9 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(0, 26);
-            dataGridView1.Margin = new Padding(2, 2, 2, 2);
+            dataGridView1.Margin = new Padding(2);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
             dataGridView1.Size = new Size(753, 255);
@@ -53,7 +54,7 @@
             cbxTable.FormattingEnabled = true;
             cbxTable.Items.AddRange(new object[] { "konversi", "tim_prestasi", "mata_kuliah", "prestasi", "mahasiswa_prestasi", "mahasiswa" });
             cbxTable.Location = new Point(8, 2);
-            cbxTable.Margin = new Padding(2, 2, 2, 2);
+            cbxTable.Margin = new Padding(2);
             cbxTable.Name = "cbxTable";
             cbxTable.Size = new Size(129, 23);
             cbxTable.TabIndex = 1;
@@ -62,7 +63,7 @@
             // addData
             // 
             addData.Location = new Point(307, 284);
-            addData.Margin = new Padding(2, 2, 2, 2);
+            addData.Margin = new Padding(2);
             addData.Name = "addData";
             addData.Size = new Size(136, 28);
             addData.TabIndex = 2;
@@ -78,7 +79,7 @@
             Controls.Add(addData);
             Controls.Add(cbxTable);
             Controls.Add(dataGridView1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "MainScreen";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

@@ -47,6 +47,12 @@ namespace koneksi_database_winform
 
         private void addData_Click(object sender, EventArgs e)
         {
+            using (AddScreen formTambahData = new AddScreen())
+            {
+                formTambahData.ShowDialog();
+            }
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = dBHelper.GetTables(cbxTable.Text);
 
         }
 
@@ -61,7 +67,7 @@ namespace koneksi_database_winform
 
                 using (EditScreen formEdit = new EditScreen(tableName, selectedRow, e.RowIndex))
                 {
-                    
+
                     formEdit.ShowDialog();
                 }
 
@@ -70,6 +76,16 @@ namespace koneksi_database_winform
                 //EditScreen editScreen = new EditScreen(tableName, selectedRow, e.RowIndex);
                 //editScreen.ShowDialog();
 
+            }
+
+            if (e.ColumnIndex == dataGridView1.Columns["deleteButton"].Index && e.RowIndex >= 0)
+            {
+                var table = dBHelper.GetTables(cbxTable.Text);
+                DataRow selectedRow = dBHelper.GetRowByIndex(table, e.RowIndex);
+                dBHelper.deleteRows((string)selectedRow["ID"]);
+
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = dBHelper.GetTables(cbxTable.Text);
             }
         }
     }

@@ -54,7 +54,7 @@ namespace koneksi_database_winform
             try
             {
                 connection.Open();
-                string query = @"UPDATE public.mata_kuliah SET Nama = @Nama, Semester = @Semester, id = @ID, Prodi = @Prodi WHERE id = @ID";
+                string query = @"INSERT INTO public.mata_kuliah(nama, semester, id, prodi) VALUES (@Nama, @Semester, @ID, @Prodi)";
 
                 using NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
 
@@ -69,15 +69,40 @@ namespace koneksi_database_winform
 
                 //query = string.Format(query, nama, semester, id, prodi);
 
-
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR! : " + ex.Message);
             }
             connection.Close();
+        }
+
+        public void deleteRows(string idToDelete)
+        {
+            try
+            {
+                var id = idToDelete;
+                connection.Open();
+                string query = @"DELETE FROM public.mata_kuliah WHERE id = @ID";
+                using NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
+
+                cmd.Parameters.AddWithValue("@ID", id);
+
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+                Console.WriteLine(rowsAffected);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR! : " + ex.Message);
+            }
+            finally
+            {
+                DialogResult message = MessageBox.Show("Data Berhasil Dihapus", "Sukses", MessageBoxButtons.OK);
+            }
+
+            connection.Close();
+           
         }
 
         public void updateRows(string nama, int semester, string id, string prodi)
@@ -92,6 +117,7 @@ namespace koneksi_database_winform
             {
                 connection.Open();
                 string query = @"UPDATE public.mata_kuliah SET Nama = @Nama, Semester = @Semester, id = @ID, Prodi = @Prodi WHERE id = @ID";
+                
 
                 using NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
 
@@ -103,8 +129,6 @@ namespace koneksi_database_winform
                 int rowsAffected = cmd.ExecuteNonQuery();
 
                 Console.WriteLine(rowsAffected);
-
-                //query = string.Format(query, nama, semester, id, prodi);
 
 
 
