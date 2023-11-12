@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
+using NpgsqlTypes;
 
 
 namespace koneksi_database_winform
@@ -51,7 +52,7 @@ namespace koneksi_database_winform
         public void updateRows(string nama, int semester, string id, string prodi)
         { 
 
-            connection.Open();
+            
 
             //string query = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'";
 
@@ -59,7 +60,7 @@ namespace koneksi_database_winform
             try
             {
                 connection.Open();
-                string query = @"UPDATE mata_kuliah SET Nama = @Nama, Semester = @Semester, id = @ID, Prodi = @Prodi";
+                string query = @"UPDATE public.mata_kuliah SET Nama = @Nama, Semester = @Semester, id = @ID, Prodi = @Prodi WHERE id = @ID";
 
                 using NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
 
@@ -80,7 +81,7 @@ namespace koneksi_database_winform
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("ERROR! : " + ex.Message);
             }
             
 
