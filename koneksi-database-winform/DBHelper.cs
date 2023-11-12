@@ -49,6 +49,37 @@ namespace koneksi_database_winform
             return tableList.ToArray();
         }
 
+        public void insertRows(string nama, int semester, string id, string prodi)
+        {
+            try
+            {
+                connection.Open();
+                string query = @"UPDATE public.mata_kuliah SET Nama = @Nama, Semester = @Semester, id = @ID, Prodi = @Prodi WHERE id = @ID";
+
+                using NpgsqlCommand cmd = new NpgsqlCommand(query, connection);
+
+                cmd.Parameters.AddWithValue("@Nama", nama);
+                cmd.Parameters.AddWithValue("@Semester", semester);
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.Parameters.AddWithValue("@Prodi", prodi);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                Console.WriteLine(rowsAffected);
+
+                //query = string.Format(query, nama, semester, id, prodi);
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR! : " + ex.Message);
+            }
+            connection.Close();
+        }
+
         public void updateRows(string nama, int semester, string id, string prodi)
         { 
 
